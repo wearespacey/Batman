@@ -9,6 +9,7 @@ namespace backend.Models
     {
         public int Id {get;set;}
         public DateTime StartDay {get;set;}
+        public DateTime? EndDay {get;set;}
         public String Latitude {get;set;}
         public String Longitude {get;set;}
         public String SiteName {get;set;}
