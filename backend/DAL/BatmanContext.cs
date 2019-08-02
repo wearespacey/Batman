@@ -20,5 +20,7 @@ namespace backend.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder){}
 
+        public override void Dispose() {}
+
     }
 }

@@ -12,39 +12,33 @@ namespace backend.Migrations
                 name: "Boxes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Boxes", x => x.Id);
+                    table.PrimaryKey("PK_Boxes", x => x.Name);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Operators",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Operators", x => x.Id);
+                    table.PrimaryKey("PK_Operators", x => x.Name);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Projects",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Projects", x => x.Id);
+                    table.PrimaryKey("PK_Projects", x => x.Name);
                 });
 
             migrationBuilder.CreateTable(
@@ -60,8 +54,8 @@ namespace backend.Migrations
                     SiteName = table.Column<string>(nullable: true),
                     Habitat1 = table.Column<string>(nullable: true),
                     Habitat2 = table.Column<string>(nullable: true),
-                    BoxId = table.Column<int>(nullable: false),
-                    OperatorId = table.Column<int>(nullable: false)
+                    BoxId = table.Column<string>(nullable: true),
+                    OperatorId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -70,14 +64,14 @@ namespace backend.Migrations
                         name: "FK_BoxLocations_Boxes_BoxId",
                         column: x => x.BoxId,
                         principalTable: "Boxes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Name",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_BoxLocations_Operators_OperatorId",
                         column: x => x.OperatorId,
                         principalTable: "Operators",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Name",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -89,7 +83,7 @@ namespace backend.Migrations
                     StartHour = table.Column<DateTime>(nullable: false),
                     EndHour = table.Column<DateTime>(nullable: false),
                     RecordUrl = table.Column<string>(nullable: true),
-                    ProjectId = table.Column<int>(nullable: false),
+                    ProjectId = table.Column<string>(nullable: true),
                     BoxLocationId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -105,8 +99,8 @@ namespace backend.Migrations
                         name: "FK_Records_Projects_ProjectId",
                         column: x => x.ProjectId,
                         principalTable: "Projects",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Name",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(

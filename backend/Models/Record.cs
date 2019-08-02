@@ -11,7 +11,7 @@ namespace backend.Models
         public DateTime StartHour {get;set;}
         public DateTime EndHour {get;set;}
         public String RecordUrl {get;set;}
-        public int ProjectId {get;set;}
+        public String ProjectId {get;set;}
         public int BoxLocationId {get;set;}
 
         [ForeignKey("BoxLocationId")]

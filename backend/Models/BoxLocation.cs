@@ -15,8 +15,8 @@ namespace backend.Models
         public String SiteName {get;set;}
         public String Habitat1 {get;set;}
         public String Habitat2 {get;set;}
-        public int BoxId {get;set;}
-        public int OperatorId {get;set;}
+        public String BoxId {get;set;}
+        public String OperatorId {get;set;}
 
         [ForeignKey("OperatorId")]
         public virtual Operator Operator {get;set;}
