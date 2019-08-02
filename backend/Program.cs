@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using backend.DataXLS;
 
 namespace backend
 {
@@ -14,7 +15,8 @@ namespace backend
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            // CreateWebHostBuilder(args).Build().Run();
+            ReadData.ReadFile();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
