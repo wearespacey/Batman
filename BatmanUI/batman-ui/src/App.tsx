@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
 import './App.css';
-import Menu from './Menu';
-import Content from './Content';
-import Footer from './Footer';
+import NavTabs from './NavTabs';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#282c34',
+    },
+    secondary: {
+      main: '#b71c1c',
+    },
+  },
+});
 
 class App extends Component {
   render() {
     return(
-      <div>
-        <Menu/>
-        <Content/>
-        <Footer/>
-      </div>
+      <ThemeProvider theme={theme}>
+        <NavTabs/>
+      </ThemeProvider>
     )
   }
 }
