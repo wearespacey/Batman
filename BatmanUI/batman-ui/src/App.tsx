@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import NavTabs from './NavTabs';
+import NavTabs from './components/NavTabs';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 

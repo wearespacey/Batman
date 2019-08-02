@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class UploadComponent extends Component {
     render() {
-        return <div className="App-content Upload-page">Upload page</div>
+        return <div className="AppContent UploadPage">Upload page</div>
     }
 }
 

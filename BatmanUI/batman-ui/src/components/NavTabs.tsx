@@ -13,7 +13,7 @@ import Box from '@material-ui/core/Box';
 import MapComponent from './MapPage';
 import AddLocationComponent from './AddLocationPage';
 import UploadComponent from './UploadPage';
-import Batman from './Batman';
+import Batman from './batman/Batman';
 
 interface TabPanelProps {
     children?: React.ReactNode;
