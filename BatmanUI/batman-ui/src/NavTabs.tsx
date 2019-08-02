@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import HomeIcon from '@material-ui/icons/Home';
 import MapIcon from '@material-ui/icons/Map';
 import AddLocationIcon from '@material-ui/icons/AddLocation';
 import UploadIcon from '@material-ui/icons/CloudUpload';
@@ -12,6 +13,7 @@ import Box from '@material-ui/core/Box';
 import MapComponent from './MapPage';
 import AddLocationComponent from './AddLocationPage';
 import UploadComponent from './UploadPage';
+import Batman from './Batman';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -31,7 +33,7 @@ function TabPanel(props: TabPanelProps) {
       aria-labelledby={`nav-tab-${index}`}
       {...other}
     >
-      <Box p={3}>{children}</Box>
+      <Box p={4}>{children}</Box>
     </Typography>
   );
 }
@@ -86,18 +88,22 @@ function NavTabs() {
           onChange={handleChange}
           aria-label="navigation tabs"
         >
-          <LinkTab icon={<MapIcon/>} label="Map" href="/map" {...a11yProps(0)}/>
-          <LinkTab icon={<AddLocationIcon/>} label="Add location" href="/add" {...a11yProps(1)} />
-          <LinkTab icon={<UploadIcon/>} label="Upload file" href="/upload" {...a11yProps(2)} />
+          <LinkTab icon={<HomeIcon/>} label="Home" href="/" { ... a11yProps(0)}/>
+          <LinkTab icon={<MapIcon/>} label="Map" href="/map" {...a11yProps(1)}/>
+          <LinkTab icon={<AddLocationIcon/>} label="Add location" href="/add" {...a11yProps(2)} />
+          <LinkTab icon={<UploadIcon/>} label="Upload file" href="/upload" {...a11yProps(3)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <MapComponent/>
+        <Batman/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <AddLocationComponent/>
+        <MapComponent/>
       </TabPanel>
       <TabPanel value={value} index={2}>
+        <AddLocationComponent/>
+      </TabPanel>
+      <TabPanel value={value} index={3}>
         <UploadComponent/>
       </TabPanel>
     </div>
