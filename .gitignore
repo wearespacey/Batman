@@ -568,7 +568,7 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 ### VisualStudioCode ###
-.vscode/*
+.vscode
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
