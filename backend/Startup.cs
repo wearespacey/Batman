@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using AutoMapper;
 using backend.Infrastructure;
+using Microsoft.EntityFrameworkCore;
+using API.Services;
 
 namespace backend
 {
@@ -24,9 +26,13 @@ namespace backend
 
         public IConfiguration Configuration { get; }
 
+        
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            ConfigurationHelper helper = new ConfigurationHelper("connectionString.json");
+
             #region Mapper configuration
             var mappingConfig = new MapperConfiguration(mc =>
             {
@@ -37,6 +43,18 @@ namespace backend
             #endregion
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            #region CORS config
+            services.AddCors();
+            #endregion
+
+            #region DB process
+            services.AddDbContext<DAL.BatmanContext>(options =>
+            {
+                string connectionString = helper.Get("connectionString");
+                options.UseSqlServer(connectionString);
+            });
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,5 +73,10 @@ namespace backend
             app.UseHttpsRedirection();
             app.UseMvc();
         }
+        
+       
+ 
+
+             
     }
 }
