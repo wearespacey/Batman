@@ -27,6 +27,7 @@ namespace backend.DAL
         public void AddBoxLocation(BoxLocation boxLocation)
         {
             _context.BoxLocations.Add(boxLocation);
+            _context.SaveChangesAsync();
         }
     }
 }

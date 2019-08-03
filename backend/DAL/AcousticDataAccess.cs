@@ -27,6 +27,7 @@ namespace backend.DAL
         public void Add(AcousticData add)
         {
             _context.AcousticDatas.Add(add);
+            _context.SaveChangesAsync();
         }
     }
 }

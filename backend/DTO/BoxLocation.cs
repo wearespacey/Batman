@@ -6,7 +6,7 @@ namespace backend.DTO
 {
     public class BoxLocation
     {
-        public int Id {get;set;}
+        public int? Id {get;set;}
         public DateTime StartDay {get;set;}
         public DateTime? EndDay {get;set;}
         public String Latitude {get;set;}
