@@ -3,6 +3,7 @@ import './App.css';
 import NavTabs from './components/NavTabs';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
+import Footer from './components/Footer';
 
 const theme = createMuiTheme({
   palette: {
@@ -20,6 +21,7 @@ class App extends Component {
     return(
       <ThemeProvider theme={theme}>
         <NavTabs/>
+        <Footer/>
       </ThemeProvider>
     )
   }
