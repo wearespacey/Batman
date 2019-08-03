@@ -14,7 +14,7 @@ namespace backend.DTO
         public String SiteName {get;set;}
         public String Habitat1 {get;set;}
         public String Habitat2 {get;set;}
-        public Operator Operator {get;set;}
-        public Box Box {get;set;}
+        public String OperatorId {get;set;}
+        public String BoxId {get;set;}
     }
 }

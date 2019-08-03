@@ -9,6 +9,6 @@ namespace backend.DTO
         public DateTime EndHour {get;set;}
         public String RecordUrl {get;set;}
         public String ProjectId {get;set;}
-        public Project Project {get;set;}
+
     }
 }
