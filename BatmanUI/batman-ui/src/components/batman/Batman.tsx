@@ -8,7 +8,7 @@ const Batman: React.FC = () => {
     <div className="Batman">
         <img src={logo} className="BatmanLogo" alt="logo" />
         <p>
-        Na, na, na, na, na, na, na, na, na, na, na, na, na... BATMAN !
+          Na, na, na, na, na, na, na, na, na, na, na, na, na... BATMAN !
         </p>
     </div>
   );

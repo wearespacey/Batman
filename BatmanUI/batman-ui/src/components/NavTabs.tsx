@@ -10,8 +10,8 @@ import { Theme, createStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Map from './MapPage';
-import AddLocationComponent from './AddLocationPage';
+import MapComponent from './MapPage';
+import AddLocationComponent from './addLocation/AddLocationPage';
 import UploadComponent from './UploadPage';
 import Batman from './batman/Batman';
 
