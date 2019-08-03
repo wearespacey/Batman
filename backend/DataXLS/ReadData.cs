@@ -90,6 +90,7 @@ namespace backend.DataXLS
                         var test = _context.BoxLocations.Add(new BoxLocation
                         {
                             StartDay = startDay,
+                            EndDay = startDay,
                             Latitude = lat,
                             Longitude = longitude,
                             SiteName = siteName,
