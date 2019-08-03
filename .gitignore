@@ -568,7 +568,7 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 ### VisualStudioCode ###
-.vscode/*
+.vscode
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -808,5 +808,7 @@ healthchecksdb
 
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 MigrationBackup/
+
+connectionString.json
 
 # End of https://www.gitignore.io/api/macos,windows,dotnetcore,aspnetcore,reactnative,visualstudio,visualstudiocode
