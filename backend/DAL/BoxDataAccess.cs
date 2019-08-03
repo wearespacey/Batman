@@ -24,6 +24,7 @@ namespace backend.DAL
         public void AddBox(Box boxLocation)
         {
             _context.Boxes.Add(boxLocation);
+            _context.SaveChangesAsync();
         }
 
         public Box GetBoxById(String boxId)

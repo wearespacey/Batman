@@ -27,6 +27,7 @@ namespace backend.DAL
         public void AddRecord(Record record)
         {
             _context.Records.Add(record);
+            _context.SaveChangesAsync();
         }
 
         public void UpdateRecord(Record record){

@@ -24,6 +24,7 @@ namespace backend.DAL
         public void AddOperator(Operator operatorDto)
         {
             _context.Operators.Add(operatorDto);
+            _context.SaveChangesAsync();
         }
     }
 }
