@@ -17,6 +17,10 @@ body {
   color: white;
 }
 
-#MapId { 
-  height: 50vh; 
+#MapId {
+  height: 50vh;
+}
+
+.filepond--wrapper {
+  width: 400px;
 }

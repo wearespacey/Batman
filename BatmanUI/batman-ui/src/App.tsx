@@ -5,17 +5,8 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import 'filepond/dist/filepond.min.css'; //  IMPORT TO CSS FILE
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
-import { registerPlugin } from 'react-filepond';
 // import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
 // import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
-import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
-
-// Register the plugins
-registerPlugin(
-  // FilePondPluginImageExifOrientation,
-  // FilePondPluginImagePreview,
-  FilePondPluginFileValidateSize
-);
 
 const theme = createMuiTheme({
   palette: {
