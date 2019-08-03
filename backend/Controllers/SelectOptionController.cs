@@ -57,7 +57,7 @@ namespace backend.Controllers
 
         // GET api/SelectOption/OperatorName
         [HttpGet("OperatorName")]
-        public ActionResult<IEnumerable<string>> GetOperatorName()
+        public async Task<ActionResult<IEnumerable<string>>> GetOperatorNameAsync()
         {
             return Ok((await _operatorAccess.GetOperators()).Select(a => a.Name).ToList() ) ;
         }
