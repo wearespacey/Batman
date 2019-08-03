@@ -1,47 +1,32 @@
 import React, { Component } from 'react';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import ReactMapGL from 'react-map-gl';
 
-type MapState = {
-    lat: number;
-    lng: number;
-    zoom: number;
-}
-
-class LeafletMap extends Component<{}, MapState> {
-  constructor(props:any) {
-    super(props)
-    this.state = {
-      lat: 50.606696,
-      lng: 3.511778,
-      zoom: 13
+class Map extends Component {
+    state = { 
+      viewport: {
+          latitude:50.606791,
+          longitude:3.511739,
+          zoom:8,
+      }
     }
-  }
-
-  render() {
-    return (
-      <Map id="MapId" center={[this.state.lat, this.state.lng]} zoom={this.state.zoom}>
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
+  
+    onViewportChange = (viewport:any) => {
+      this.setState({viewport})
+    } 
+  
+    render () { 
+      const { viewport } = this.state
+      return ( 
+        <ReactMapGL
+          className="MapContainer"
+          {...viewport}
+          width='99%'
+          height='80vh'
+          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+          onViewportChange={viewport => this.onViewportChange(viewport)}
         />
-        <Marker position={[this.state.lat, this.state.lng]}>
-          <Popup>
-            A pretty CSS3 popup. <br/> Easily customizable.
-          </Popup>
-        </Marker>
-      </Map>
-    );
+      ) 
+    } 
   }
-}
 
-class MapComponent extends Component {
-    render() {
-        return(
-            <div className="MapPage">
-                <LeafletMap/>
-            </div>
-        );
-    }
-}
-
-export default MapComponent;
+export default Map;
