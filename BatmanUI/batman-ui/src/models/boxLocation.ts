@@ -1,6 +1,6 @@
 export default interface BoxLocation{
     id:number | null;
-    startDay:Date;
+    startDay:String;
     endDay:Date | null;
     latitude:String;
     longitude:String;

@@ -20,17 +20,14 @@ class Api{
     }
 
     static async addNewLocation(boxLocation){
-        const response = await fetch({
-            url: `${BASE_URL}/boxlocation`,
+        const response = await fetch(`${BASE_URL}/boxLocation`,{
             method:'POST',
-            body:boxLocation,
             headers:{
-                'content-type':'Application/json'
-            }
+                'Content-type':'Application/json'
+            },
+            body:JSON.stringify(boxLocation)
         });
-        console.log(response);
         const data = await response.json();
-        console.log(data);
     }
 }
 

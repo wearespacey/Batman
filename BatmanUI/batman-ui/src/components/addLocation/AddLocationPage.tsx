@@ -7,6 +7,7 @@ import { InputLabel } from '@material-ui/core';
 import Api from '../../services/api';
 import styles from './addLocation.module.css';
 import BoxLocation from '../../models/boxLocation';
+import { CircularProgress } from '@material-ui/core';
 
 type AddLocationProps = {
 
@@ -20,9 +21,10 @@ type AddLocationState = {
     box:string;
     habitat:string;
     otherHabitat:string;
-    boxes:Array<string>,
-    operators:Array<string>,
-    habitats:Array<string>
+    boxes:Array<string>;
+    operators:Array<string>;
+    habitats:Array<string>;
+    isPosting:boolean;
 }
 
 class AddLocationComponent extends Component<{}, AddLocationState> {
@@ -39,7 +41,8 @@ class AddLocationComponent extends Component<{}, AddLocationState> {
             otherHabitat:"",
             boxes : [],
             operators:[],
-            habitats:[]
+            habitats:[],
+            isPosting:false
         };
 
         this.addBoxLocation = this.addBoxLocation.bind(this);
@@ -51,6 +54,7 @@ class AddLocationComponent extends Component<{}, AddLocationState> {
         this.getBoxes = this.getBoxes.bind(this);
         this.getOperators = this.getOperators.bind(this);
         this.getHabitats = this.getHabitats.bind(this);
+        this.clearState = this.clearState.bind(this);
         this.getBoxes();
         this.getOperators();
         this.getHabitats();
@@ -73,11 +77,12 @@ class AddLocationComponent extends Component<{}, AddLocationState> {
 
     addBoxLocation(){
         if("geolocation" in navigator){
-            navigator.geolocation.getCurrentPosition((res)=>{
+            this.setState({isPosting:true});
+            navigator.geolocation.getCurrentPosition(async (res)=>{
                 this.setState({latitude:res.coords.latitude.toString(), longitude:res.coords.longitude.toString()});
                 let boxLocation:BoxLocation = {
                     id:null,
-                    startDay:new Date(),
+                    startDay:new Date().toJSON(),
                     endDay:null,
                     latitude:this.state.latitude,
                     longitude:this.state.longitude,
@@ -87,7 +92,8 @@ class AddLocationComponent extends Component<{}, AddLocationState> {
                     operatorId:this.state.operator,
                     boxId:this.state.box
                 }
-                Api.addNewLocation(boxLocation);
+                await Api.addNewLocation(boxLocation);
+                this.clearState();
             });
             
         }
@@ -113,6 +119,19 @@ class AddLocationComponent extends Component<{}, AddLocationState> {
 
     handlerOtherHabitatChange(evt:any){
         this.setState({otherHabitat:evt.target.value});
+    }
+
+    clearState(){
+        this.setState({
+            latitude:"",
+            longitude:"",
+            siteName:"",
+            operator:"",
+            box:"",
+            habitat:"",
+            otherHabitat:"",
+            isPosting:false
+        })
     }
 
     render() {
@@ -180,7 +199,11 @@ class AddLocationComponent extends Component<{}, AddLocationState> {
                 </div>
                 
 
-                <Button onClick={()=>this.addBoxLocation()} variant="contained" color="primary">Add box location</Button>
+                <Button onClick={()=>this.addBoxLocation()} variant="contained" color="primary" disabled={this.state.isPosting}>
+                    {
+                        this.state.isPosting?< CircularProgress color="secondary"/> : 'Add box location'
+                    }
+                </Button>
             </div>
         );
     }
