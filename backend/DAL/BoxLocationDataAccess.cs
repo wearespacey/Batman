@@ -29,5 +29,10 @@ namespace backend.DAL
             _context.BoxLocations.Add(boxLocation);
             _context.SaveChangesAsync();
         }
+
+        internal IEnumerable<BoxLocation> GetBoxNotFinishLocations()
+        {
+            return _context.BoxLocations.Where(a => a.EndDay == null).ToList();
+        }
     }
 }

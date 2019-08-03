@@ -36,6 +36,11 @@ namespace backend.Controllers
             return Ok(_mapper.Map<DTO.BoxLocation>(boxLocationFound));
         }
 
+        [HttpGet("notfinish")]
+        public ActionResult<List<BoxLocation>> GetNotfinish()
+        {
+            return _boxLocationDataAccess.GetBoxNotFinishLocations().Select(_mapper.Map<DTO.BoxLocation>).ToList();
+        }
 
         [HttpPost]
         public ActionResult<BoxLocation> AddBoxLocation([FromBody]BoxLocation boxLocation)
