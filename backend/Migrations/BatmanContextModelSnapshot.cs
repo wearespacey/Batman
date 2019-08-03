@@ -44,13 +44,10 @@ namespace backend.Migrations
 
             modelBuilder.Entity("backend.Models.Box", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Name")
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
+                    b.HasKey("Name");
 
                     b.ToTable("Boxes");
                 });
@@ -61,7 +58,7 @@ namespace backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BoxId");
+                    b.Property<string>("BoxId");
 
                     b.Property<DateTime?>("EndDay");
 
@@ -73,7 +70,7 @@ namespace backend.Migrations
 
                     b.Property<string>("Longitude");
 
-                    b.Property<int>("OperatorId");
+                    b.Property<string>("OperatorId");
 
                     b.Property<string>("SiteName");
 
@@ -90,26 +87,20 @@ namespace backend.Migrations
 
             modelBuilder.Entity("backend.Models.Operator", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Name")
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
+                    b.HasKey("Name");
 
                     b.ToTable("Operators");
                 });
 
             modelBuilder.Entity("backend.Models.Project", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Name")
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
+                    b.HasKey("Name");
 
                     b.ToTable("Projects");
                 });
@@ -124,7 +115,7 @@ namespace backend.Migrations
 
                     b.Property<DateTime>("EndHour");
 
-                    b.Property<int>("ProjectId");
+                    b.Property<string>("ProjectId");
 
                     b.Property<string>("RecordUrl");
 
@@ -151,13 +142,11 @@ namespace backend.Migrations
                 {
                     b.HasOne("backend.Models.Box", "Box")
                         .WithMany("BoxLocations")
-                        .HasForeignKey("BoxId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("BoxId");
 
                     b.HasOne("backend.Models.Operator", "Operator")
                         .WithMany("BoxLocations")
-                        .HasForeignKey("OperatorId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("OperatorId");
                 });
 
             modelBuilder.Entity("backend.Models.Record", b =>
@@ -169,8 +158,7 @@ namespace backend.Migrations
 
                     b.HasOne("backend.Models.Project", "Project")
                         .WithMany("Records")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ProjectId");
                 });
 #pragma warning restore 612, 618
         }

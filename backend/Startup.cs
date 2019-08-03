@@ -14,6 +14,8 @@ using AutoMapper;
 using backend.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using API.Services;
+using backend.DataXLS;
+using backend.DAL;
 
 namespace backend
 {
@@ -52,13 +54,14 @@ namespace backend
             services.AddDbContext<DAL.BatmanContext>(options =>
             {
                 string connectionString = helper.Get("connectionString");
-                options.UseSqlServer(connectionString);
+                options.UseLazyLoadingProxies()
+                .UseSqlServer(connectionString);
             });
             #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, BatmanContext context)
         {
             if (env.IsDevelopment())
             {
@@ -72,6 +75,9 @@ namespace backend
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            var read = new ReadData(context);
+            // read.ReadFile();
         }
         
        
