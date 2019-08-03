@@ -55,7 +55,7 @@ namespace backend.Controllers
         [HttpGet("BoxID")]
         public async Task<ActionResult<IEnumerable<string>>> GetBoxIDAsync()
         {
-            return Ok( (await _boxDataAccess.GetBoxes()).Select(_mapper.Map<DTO.Box>).Select(a => a.Name).ToList());
+            return Ok( (await _boxDataAccess.GetBoxesAsync()).Select(_mapper.Map<DTO.Box>).Select(a => a.Name).ToList());
         }
 
         // GET api/SelectOption/OperatorName
