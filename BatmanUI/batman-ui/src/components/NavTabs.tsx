@@ -13,7 +13,7 @@ import Box from '@material-ui/core/Box';
 import MapComponent from './MapPage';
 import AddLocationComponent from './addLocation/AddLocationPage';
 import UploadComponent from './UploadPage';
-import Batman from './batman/Batman';
+import HomePage from './HomePage';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -95,7 +95,7 @@ function NavTabs() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <Batman/>
+        <HomePage/>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <MapComponent/>
