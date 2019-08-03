@@ -98,7 +98,7 @@ function NavTabs() {
         <Batman/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <MapComponent/>
+        <Map/>
       </TabPanel>
       <TabPanel value={value} index={2}>
         <AddLocationComponent/>
