@@ -19,6 +19,11 @@ namespace backend.DAL
             return _context.Boxes.ToList();
         }
 
+        public Box GetBoxById(String boxId)
+        {
+            return _context.Boxes.Where(b => b.Name.Equals(boxId)).FirstOrDefault();
+        }
+
         public void AddBox(Box boxLocation)
         {
             _context.Boxes.Add(boxLocation);

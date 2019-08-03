@@ -8,8 +8,9 @@ using System.Linq;
 
 namespace backend.Controllers
 {
-    [Controller]
-    public class BoxController
+    [Route("api/[controller]")]
+    [ApiController]
+    public class BoxController : ControllerBase
     {
         private IMapper _mapper;
         private BoxDataAccess _boxDataAccess;
@@ -21,17 +22,25 @@ namespace backend.Controllers
         }
 
         [HttpGet]
-        [Route("api/box")]
-        public List<Box> GetBoxes()
+        public ActionResult<List<Box>> Get()
         {
             return _boxDataAccess.GetBoxes().Select(_mapper.Map<DTO.Box>).ToList();
         }
 
-        [HttpPost]
-        [Route("api/box")]
-        public void AddBox([FromBody]Box box)
+        [HttpGet("{name}")]
+        public ActionResult<Box> Get(String boxId)
         {
+            Models.Box boxFound = _boxDataAccess.GetBoxById(boxId);
+            if(boxFound == null) return NotFound();
+            return _mapper.Map<DTO.Box>(boxFound);
+        }
+
+        [HttpPost]
+        public ActionResult<Box> AddBox([FromBody]Box box)
+        {
+            if(box == null) return BadRequest();
             _boxDataAccess.AddBox(_mapper.Map<Models.Box>(box));
+            return Created("/box/" + box.Name, box);
         }
     }
 }
