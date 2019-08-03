@@ -1,8 +1,8 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using backend.Models;
+using backend.DTO;
 
-namespace backend.Models
+namespace backend.DTO
 {
     public class AcousticData
     {
@@ -12,9 +12,5 @@ namespace backend.Models
         public int ContactNumbers {get;set;}
         public String Validation {get;set;}
         public int RecordId {get;set;}
-
-        [ForeignKey("RecordId")]
-        public virtual Record Record {get;set;}
-
     }
 }

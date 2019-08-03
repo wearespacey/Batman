@@ -24,7 +24,7 @@ namespace backend.Controllers
         [HttpGet]
         public ActionResult<List<Box>> Get()
         {
-            return _boxDataAccess.GetBoxes().Select(_mapper.Map<DTO.Box>).ToList();
+            return (_boxDataAccess.GetBoxesAsync()).Result.Select(_mapper.Map<DTO.Box>).ToList();
         }
 
         [HttpGet("{name}")]
