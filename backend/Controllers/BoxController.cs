@@ -20,11 +20,11 @@ namespace backend.Controllers
             _boxDataAccess = new BoxDataAccess(context);
         }
 
-        [HttpGet]
+        [HttpGet]  
         [Route("api/box")]
-        public List<Box> GetBoxes()
+        public async System.Threading.Tasks.Task<List<Box>> GetBoxesAsync()
         {
-            return _boxDataAccess.GetBoxes().Select(_mapper.Map<DTO.Box>).ToList();
+            return (await _boxDataAccess.GetBoxes()).Select(_mapper.Map<DTO.Box>).ToList();
         }
 
         [HttpPost]

@@ -15,6 +15,8 @@ namespace backend.Infrastructure
             CreateMap<DTO.Box, Models.Box>();
             CreateMap<Models.Operator, DTO.Operator>();
             CreateMap<DTO.Operator, Models.Operator>();
+            CreateMap<DTO.AcousticData, Models.AcousticData>();
+            CreateMap<Models.AcousticData, DTO.AcousticData>();
         }
     }
 }
