@@ -14,6 +14,7 @@ import MapComponent from './MapPage';
 import AddLocationComponent from './addLocation/AddLocationPage';
 import UploadComponent from './UploadPage';
 import HomePage from './HomePage';
+import Batman from './HomePage';
 
 interface TabPanelProps {
     children?: React.ReactNode;
