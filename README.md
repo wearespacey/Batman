@@ -1,5 +1,6 @@
-# Batman
 ![BatmanProjectLogo](https://github.com/wearespacey/Batman/blob/backend/BatmanProjectLogoBig.png)
+
+# Batman
 
 Opensource project coded during the Hack in the Woods 2019 edition. The aim of the project is to aid the Natagora organization and their various volunteers in better managing the equipment used to analyze bat population in Belgium. 
 
