@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactMapGL, {GeolocateControl} from 'react-map-gl';
+import ReactMapGL, {GeolocateControl, NavigationControl} from 'react-map-gl';
 
 class Map extends Component {
     state = { 
@@ -22,12 +22,16 @@ class Map extends Component {
           {...viewport}
           width='99%'
           height='80vh'
+          mapStyle='mapbox://styles/xvercruysse/cjyvncqik17as1cp8vz740l9l'
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
           onViewportChange={viewport => this.onViewportChange(viewport)}>
             <GeolocateControl 
               positionOptions={{enableHighAccuracy: true}}
               trackUserLocation={true}
-        />
+            />
+            <div style={{position: 'absolute', right: 0}}>
+              <NavigationControl />
+            </div>
         </ReactMapGL>
       ) 
     } 
