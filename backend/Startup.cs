@@ -54,7 +54,8 @@ namespace backend
             services.AddDbContext<DAL.BatmanContext>(options =>
             {
                 string connectionString = helper.Get("connectionString");
-                options.UseSqlServer(connectionString);
+                options.UseLazyLoadingProxies()
+                .UseSqlServer(connectionString);
             });
             #endregion
         }
@@ -76,7 +77,7 @@ namespace backend
             app.UseMvc();
 
             var read = new ReadData(context);
-            read.ReadFile();
+            // read.ReadFile();
         }
         
        

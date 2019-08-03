@@ -11,7 +11,7 @@ namespace backend.DataXLS
     public class ReadData : IDisposable
     {
         private BatmanContext _context;
-        public const int MAX_ROW = 5000 /*18188*/;
+        public const int MAX_ROW = 1000 /*18188*/;
 
         public ReadData(BatmanContext context)
         {
@@ -77,7 +77,7 @@ namespace backend.DataXLS
                         }  
 
                         //if operator doesn't exist
-                        if(_context.Operators.Where(o => o.Name.Equals(op)) is null)
+                        if(_context.Operators.Where(o => o.Name.Equals(op)).FirstOrDefault() is null)
                         {
                             var operator_obj = _context.Operators.Add(new Operator
                             {
@@ -95,7 +95,7 @@ namespace backend.DataXLS
                             SiteName = siteName,
                             Habitat1 = habitat1,
                             Habitat2 = habitat2,
-                            OperatorId = _context.Operators.Where(o => o.Name.Equals(op)).FirstOrDefault()?.Name,
+                            OperatorId = _context.Operators.Where(o => o.Name.Equals(op)).FirstOrDefault().Name,
                             Box = _context.Boxes.Where(b => b.Name.Equals(box)).FirstOrDefault(),
                         });
                         await _context.SaveChangesAsync();
