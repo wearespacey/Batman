@@ -19,3 +19,7 @@ body {
 .MuiSelect-select{
   min-width: 150px !important;
 }
+
+.boxLocationMarker {
+  height: 3vmin;
+}

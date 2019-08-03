@@ -29,6 +29,12 @@ class Api{
         });
         const data = await response.json();
     }
+
+    static async getCurrentLocations() {
+        const response = await fetch(`${BASE_URL}/boxLocation/notfinish`);
+        const data = await response.json();
+        return data;
+    }
 }
 
 export default Api;
