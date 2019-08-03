@@ -15,14 +15,25 @@ namespace backend.DAL
         {
             _context = context;
         }
-        public Task<List<Box>> GetBoxes()
+
+        public List<Box> GetBoxes()
         {
-            return _context.Boxes.ToListAsync();
+            return _context.Boxes.ToList();
         }
 
         public void AddBox(Box boxLocation)
         {
             _context.Boxes.Add(boxLocation);
+        }
+
+        public Box GetBoxById(String boxId)
+        {
+            return _context.Boxes.Where(b => b.Name.Equals(boxId)).FirstOrDefault();
+        }
+
+        public Task<List<Box>> GetBoxesAsync()
+        {
+            return _context.Boxes.ToListAsync();
         }
     }
 }

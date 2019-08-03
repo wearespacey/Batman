@@ -18,6 +18,11 @@ namespace backend.DAL
         {
             return _context.BoxLocations.ToList();
         }
+        
+        public BoxLocation GetBoxLocationById(int boxLocationId)
+        {
+            return _context.BoxLocations.Where(b => b.Id == boxLocationId).FirstOrDefault();
+        }
 
         public void AddBoxLocation(BoxLocation boxLocation)
         {

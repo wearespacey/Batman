@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using backend.DAL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,12 +13,14 @@ namespace backend.Controllers
     [ApiController]
     public class SelectOptionController : ControllerBase
     {
+        private IMapper _mapper;
         private BoxDataAccess _boxDataAccess;
         private OperatorAccess _operatorAccess;
-        public SelectOptionController(BoxDataAccess boxDataAccess, OperatorAccess operatorAccess)
+        public SelectOptionController(BatmanContext context, IMapper mapper)
         {
-            _operatorAccess = operatorAccess;
-            _boxDataAccess = boxDataAccess;
+            _mapper = mapper;
+            _operatorAccess = new OperatorAccess(context);
+            _boxDataAccess = new BoxDataAccess(context);
         } 
 
         // GET api/SelectOption/Habitat1
@@ -52,14 +55,14 @@ namespace backend.Controllers
         [HttpGet("BoxID")]
         public async Task<ActionResult<IEnumerable<string>>> GetBoxIDAsync()
         {
-            return Ok( (await _boxDataAccess.GetBoxes()).Select(a => a.Name).ToList());
+            return Ok( (await _boxDataAccess.GetBoxes()).Select(_mapper.Map<DTO.Box>).Select(a => a.Name).ToList());
         }
 
         // GET api/SelectOption/OperatorName
         [HttpGet("OperatorName")]
         public async Task<ActionResult<IEnumerable<string>>> GetOperatorNameAsync()
         {
-            return Ok((await _operatorAccess.GetOperators()).Select(a => a.Name).ToList() ) ;
+            return Ok((await _operatorAccess.GetOperators()).Select(_mapper.Map<DTO.Operator>).Select(a => a.Name).ToList() ) ;
         }
     }
 }
