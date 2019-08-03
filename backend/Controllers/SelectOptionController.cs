@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using backend.DAL;
+using backend.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,12 +16,15 @@ namespace backend.Controllers
     {
         private IMapper _mapper;
         private BoxDataAccess _boxDataAccess;
+        private BoxLocationDataAccess _boxLocationDataAccess;
         private OperatorAccess _operatorAccess;
+
         public SelectOptionController(BatmanContext context, IMapper mapper)
         {
             _mapper = mapper;
             _operatorAccess = new OperatorAccess(context);
             _boxDataAccess = new BoxDataAccess(context);
+            _boxLocationDataAccess = new BoxLocationDataAccess(context);
         } 
 
         // GET api/SelectOption/Habitat1
@@ -55,7 +59,10 @@ namespace backend.Controllers
         [HttpGet("BoxID")]
         public async Task<ActionResult<IEnumerable<string>>> GetBoxIDAsync()
         {
-            return Ok( (await _boxDataAccess.GetBoxesAsync()).Select(_mapper.Map<DTO.Box>).Select(a => a.Name).ToList());
+            List<Box> boxList = await _boxDataAccess.GetBoxesAsync();
+            List<string> use = _boxLocationDataAccess.GetBoxNotFinishLocations().Select(a=>a.BoxId).ToList();
+            boxList.RemoveAll(a => use.Contains(a.Name));
+            return Ok(boxList.Select(_mapper.Map<DTO.Box>).Select(a => a.Name).ToList());
         }
 
         // GET api/SelectOption/OperatorName

@@ -39,7 +39,7 @@ namespace backend.Controllers
         [HttpGet("notfinish")]
         public ActionResult<List<BoxLocation>> GetNotfinish()
         {
-            return _boxLocationDataAccess.GetBoxLocations().Where(a=>a.EndDay==null).Select(_mapper.Map<DTO.BoxLocation>).ToList();
+            return _boxLocationDataAccess.GetBoxNotFinishLocations().Select(_mapper.Map<DTO.BoxLocation>).ToList();
         }
 
         [HttpPost]
