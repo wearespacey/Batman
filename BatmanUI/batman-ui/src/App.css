@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: white ;
+  background-color: #282c34 ;
   color: white;
 }
 
@@ -20,12 +20,16 @@ body {
   min-width: 150px !important;
 }
 
+.filepond--wrapper {
+  width: 400px;
+}
+
 .boxLocationMarker {
   height: 3vmin;
 }
 
 .AppFooterText{
-  background-color:#282c34;
+  background-color:black;
   position: fixed;
   left: 0;
   bottom: 0;
@@ -49,20 +53,13 @@ body {
 .EasterEggText .tooltiptext {
   visibility: hidden;
   width: 300px;
-  background-color: black;
-  color: #fff;
+  background-color: yellow;
+  color: black;
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
   position: absolute;
   z-index: 1;
-}
-
-.HomePageLogo {
-  animation: AppLogoSpin infinite 3s linear;
-  height: 20vmin;
-  margin-bottom: 20px;
-  pointer-events: none;
 }
 
 .HomePage {
@@ -73,4 +70,31 @@ body {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: black;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: black;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Add an active class to highlight the current page */
+.topnav .nav-link a.active {
+  border-bottom: solid red 1px;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
 }
