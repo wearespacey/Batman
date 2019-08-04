@@ -36,6 +36,20 @@ namespace backend.Controllers
             return Ok(_mapper.Map<DTO.BoxLocation>(boxLocationFound));
         }
 
+        [HttpGet("notfinish")]
+        public ActionResult<List<BoxLocation>> GetNotfinish()
+        {
+            var boxLocations = new List<BoxLocation>();
+
+            foreach(var box in _boxLocationDataAccess.GetBoxNotFinishLocations().Select(_mapper.Map<DTO.BoxLocation>))
+            {
+                box.Latitude.Replace(',', '.');
+                box.Longitude.Replace(',', '.');
+                boxLocations.Add(box);
+            }
+
+            return boxLocations;
+        }
 
         [HttpPost]
         public ActionResult<BoxLocation> AddBoxLocation([FromBody]BoxLocation boxLocation)
