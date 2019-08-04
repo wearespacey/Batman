@@ -4,6 +4,7 @@ import logo from '../assets/logo.svg';
 import Api from '../services/api';
 import BoxLocation from '../models/boxLocation';
 import { get } from 'https';
+import PopupDetailsPage from './PopupDetailsPage';
 
 type MapState = {
   viewport: {
@@ -90,7 +91,7 @@ function BoxMarker(props:BoxLocation) {
 function BoxDetails(props:PopupProps) {
   const[box, setBox] = useState(props.box);
   return <Popup latitude={Number(box.latitude)} longitude={Number(box.longitude)} closeOnClick={true} captureScroll={true} onClose={() => props.onCloseCallback(false)} >
-    <div className="PopupContent">Ceci est un popup</div>
+    <div className="PopupContent"><PopupDetailsPage {... box}/></div>
   </Popup>
 }
 
