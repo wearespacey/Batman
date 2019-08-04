@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using backend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.DAL
 {
@@ -16,9 +17,9 @@ namespace backend.DAL
 
         public List<BoxLocation> GetBoxLocations()
         {
-            return _context.BoxLocations.ToList();
+            return _context.BoxLocations.Include(a => a.Records).ThenInclude(r => r.First().AcousticData).ToList();
         }
-        
+
         public BoxLocation GetBoxLocationById(int boxLocationId)
         {
             return _context.BoxLocations.Where(b => b.Id == boxLocationId).FirstOrDefault();
