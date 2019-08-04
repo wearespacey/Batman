@@ -23,3 +23,54 @@ body {
 .boxLocationMarker {
   height: 3vmin;
 }
+
+.AppFooterText{
+  background-color:#282c34;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 5vmin;
+  text-align: center;
+}
+
+.EasterEggText:hover .tooltiptext{  
+  visibility: visible;
+}
+
+.EasterEggText {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted white; /* If you want dots under the hoverable text */
+  text-align: center;
+
+}
+
+.EasterEggText .tooltiptext {
+  visibility: hidden;
+  width: 300px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+}
+
+.HomePageLogo {
+  animation: AppLogoSpin infinite 3s linear;
+  height: 20vmin;
+  margin-bottom: 20px;
+  pointer-events: none;
+}
+
+.HomePage {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: black;
+}
