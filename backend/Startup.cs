@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using API.Services;
 using backend.DataXLS;
 using backend.DAL;
+using backend.Services;
 
 namespace backend
 {
@@ -45,6 +46,7 @@ namespace backend
             #endregion
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddSingleton<BlobStorage>();
 
             #region CORS config
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>

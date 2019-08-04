@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using backend.Services;
+using System.IO;
+using Microsoft.Azure.Storage.Blob;
 
 namespace backend.Controllers
 {
@@ -10,6 +13,12 @@ namespace backend.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private BlobStorage _blobStorage;
+
+        public ValuesController(BlobStorage blob)
+        {
+            _blobStorage = blob;
+        }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
@@ -26,8 +35,21 @@ namespace backend.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> PostAsync([FromBody] string file)
         {
+            using (var stream = new MemoryStream(Convert.FromBase64String(file)))
+            {
+                try
+                {
+                    CloudBlobContainer container = await this._blobStorage.GetContainerByName("bat-sound-files");
+                    CloudBlockBlob blob = await this._blobStorage.UploadBlobByReference(Guid.NewGuid().ToString(), stream, container);
+                    return Ok(new { soundUri = blob.Uri.AbsoluteUri });
+                }
+                catch(Exception ex)
+                {
+                    return BadRequest(ex);
+                }
+            }
         }
 
         // PUT api/values/5
