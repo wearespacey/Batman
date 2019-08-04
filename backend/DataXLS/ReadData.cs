@@ -50,8 +50,8 @@ namespace backend.DataXLS
                             double lat1, longitude1;
                             dico.TryGetValue(0, out lat1);
                             dico.TryGetValue(1, out longitude1);
-                            longitude = longitude1.ToString();
-                            lat = lat1.ToString();
+                            longitude = longitude1.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                            lat = lat1.ToString(System.Globalization.CultureInfo.InvariantCulture);
                         }
                         catch (Exception e)
                         {
