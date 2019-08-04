@@ -3,7 +3,7 @@ import logo from '../assets/logobig.png';
 import '../App.css';
 
 
-const Batman: React.FC = () => {
+const HomePage: React.FC = () => {
   return (
     <div className="HomePage">
         <img src={logo} className="HomePageLogo" alt="logo" />
@@ -14,4 +14,4 @@ const Batman: React.FC = () => {
   );
 }
 
-export default Batman;
+export default HomePage;
