@@ -3,6 +3,7 @@ import ReactMapGL, {GeolocateControl, NavigationControl, Marker, Popup} from 're
 import logo from '../assets/logo.svg';
 import Api from '../services/api';
 import BoxLocation from '../models/boxLocation';
+import { get } from 'https';
 
 type MapState = {
   viewport: {
@@ -32,8 +33,6 @@ const Map: FunctionComponent<{initial?: MapState}> = ({
     setBoxes(locations);
   };
 
-  getCurrentBoxes();
-
   const onViewportChange = (viewport:any) => {
     setViewport(viewport);
   } 
@@ -45,7 +44,8 @@ const Map: FunctionComponent<{initial?: MapState}> = ({
       width='99%'
       height='80vh'
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-      onViewportChange={viewport => onViewportChange(viewport)}>
+      onViewportChange={viewport => onViewportChange(viewport)}
+      onLoad={getCurrentBoxes}>
       <GeolocateControl 
         positionOptions={{enableHighAccuracy: true}}
         trackUserLocation={true}
@@ -53,10 +53,14 @@ const Map: FunctionComponent<{initial?: MapState}> = ({
       <div style={{position: 'absolute', right: 0}}>
         <NavigationControl />
       </div>
-      {console.log("A map has been rendered")}
       {boxes.map(l => {return <BoxMarker key={String(l.boxId)} {...l}/>})}
     </ReactMapGL>
   );
+}
+
+type PopupProps = {
+  box: BoxLocation,
+  onCloseCallback: (show:boolean) => void
 }
 
 function BoxMarker(props:BoxLocation) {
@@ -68,12 +72,9 @@ function BoxMarker(props:BoxLocation) {
     setShowPopup(true);
   }
 
-  function BoxDetails(props:BoxLocation) {
-    const[box, setBox] = useState(props);
-    return <Popup latitude={Number(box.latitude)} longitude={Number(box.longitude)} closeOnClick={true} onClose={() => setShowPopup(false)} >
-      <div className="PopupContent">Ceci est un popup</div>
-      {console.log("A popup has been rendered")}
-    </Popup>
+  const popupProps:PopupProps = {
+    box: box,
+    onCloseCallback: setShowPopup
   }
 
   return (
@@ -81,10 +82,16 @@ function BoxMarker(props:BoxLocation) {
       <Marker latitude={Number(box.latitude)} longitude={Number(box.longitude)} offsetLeft={0} offsetTop={0}>
         <img className="boxLocationMarker" src={logo} alt={"box marker"} onClick={handleClick} />
       </Marker>
-      {console.log("A marker has been rendered")}
-      {showPopup && <BoxDetails { ...box} />}
+      {showPopup && <BoxDetails { ...popupProps} />}
     </div>
   );
+}
+
+function BoxDetails(props:PopupProps) {
+  const[box, setBox] = useState(props.box);
+  return <Popup latitude={Number(box.latitude)} longitude={Number(box.longitude)} closeOnClick={true} captureScroll={true} onClose={() => props.onCloseCallback(false)} >
+    <div className="PopupContent">Ceci est un popup</div>
+  </Popup>
 }
 
 export default Map;

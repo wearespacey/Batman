@@ -98,3 +98,7 @@ body {
 .topnav .icon {
   display: none;
 }
+
+.PopupContent {
+  color: black;
+}
