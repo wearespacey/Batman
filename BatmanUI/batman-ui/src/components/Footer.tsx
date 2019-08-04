@@ -7,7 +7,8 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import { TransitionProps } from "@material-ui/core/transitions";
-import logo from '../assets/logo.svg';
+import logo from '../assets/batmanlogo.png';
+
 
 const Transition = React.forwardRef<unknown, TransitionProps>(
   function Transition(props, ref) {
@@ -27,11 +28,15 @@ export default function AlertDialogSlide() {
   }
 
   return (
-    <footer>
-      <div className="tooltiptext" onClick={handleClickOpen}>
-        Launch BatSignal
+    <footer className="AppFooter">
+      <div className="FooterText">
+        <span className="EasterEggText">
+          Batman
+          <div className="tooltiptext" onClick={handleClickOpen}>Launch BatSignal</div>
+        </span>Project - SpaceY - #hitw2019
+        
       </div>
-      Batman
+      
       <Dialog
         open={open}
         TransitionComponent={Transition}
@@ -52,15 +57,9 @@ export default function AlertDialogSlide() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Disagree
-          </Button>
-          <Button onClick={handleClose} color="primary">
-            Agree
-          </Button>
+          <Button onClick={handleClose} color="primary">Shut off BatSignal</Button>
         </DialogActions>
       </Dialog>
-      <div>Project - SpaceY - #hitw2019</div>
     </footer>
   );
 }
