@@ -82,7 +82,7 @@ namespace backend
             app.UseMvc();
 
             var read = new ReadData(context);
-            // read.ReadFile();
+            read.ReadFile();
         }
         
        
