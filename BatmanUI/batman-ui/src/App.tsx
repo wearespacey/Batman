@@ -4,6 +4,7 @@ import NavTabs from './components/NavTabs';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Footer from './components/Footer';
+import Map from './components/MapPage'
 
 const theme = createMuiTheme({
   palette: {
@@ -20,7 +21,7 @@ class App extends Component {
   render() {
     return(
       <ThemeProvider theme={theme}>
-        <NavTabs/>
+        <Map/>
         <Footer/>
       </ThemeProvider>
     )

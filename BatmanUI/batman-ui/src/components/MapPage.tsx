@@ -1,9 +1,8 @@
-import React, { Component, MouseEvent, FunctionComponent, useState } from 'react';
+import React, { MouseEvent, FunctionComponent, useState } from 'react';
 import ReactMapGL, {GeolocateControl, NavigationControl, Marker, Popup} from 'react-map-gl';
 import logo from '../assets/logo.svg';
 import Api from '../services/api';
 import BoxLocation from '../models/boxLocation';
-import { BoxAlignProperty } from 'csstype';
 
 type MapState = {
   viewport: {
@@ -45,7 +44,6 @@ const Map: FunctionComponent<{initial?: MapState}> = ({
       {...viewport}
       width='99%'
       height='80vh'
-      mapStyle='mapbox://styles/xvercruysse/cjyvncqik17as1cp8vz740l9l'
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       onViewportChange={viewport => onViewportChange(viewport)}>
       <GeolocateControl 
@@ -55,7 +53,8 @@ const Map: FunctionComponent<{initial?: MapState}> = ({
       <div style={{position: 'absolute', right: 0}}>
         <NavigationControl />
       </div>
-      {boxes.map(l => {return <BoxMarker {...l}/>})}
+      {console.log("A map has been rendered")}
+      {boxes.map(l => {return <BoxMarker key={String(l.boxId)} {...l}/>})}
     </ReactMapGL>
   );
 }
@@ -69,20 +68,23 @@ function BoxMarker(props:BoxLocation) {
     setShowPopup(true);
   }
 
+  function BoxDetails(props:BoxLocation) {
+    const[box, setBox] = useState(props);
+    return <Popup latitude={Number(box.latitude)} longitude={Number(box.longitude)} closeOnClick={true} onClose={() => setShowPopup(false)} >
+      <div className="PopupContent">Ceci est un popup</div>
+      {console.log("A popup has been rendered")}
+    </Popup>
+  }
+
   return (
     <div>
       <Marker latitude={Number(box.latitude)} longitude={Number(box.longitude)} offsetLeft={0} offsetTop={0}>
         <img className="boxLocationMarker" src={logo} alt={"box marker"} onClick={handleClick} />
       </Marker>
+      {console.log("A marker has been rendered")}
       {showPopup && <BoxDetails { ...box} />}
     </div>
   );
-}
-
-//Popup/Canvas as a hook
-function BoxDetails(props:BoxLocation) {
-  const[box, setBox] = useState(props);
-  return <Popup latitude={Number(box.latitude)} longitude={Number(box.longitude)} closeButton={true} >Ceci est un popup</Popup>
 }
 
 export default Map;
