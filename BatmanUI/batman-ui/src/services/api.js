@@ -35,6 +35,12 @@ class Api{
         const data = await response.json();
         return data;
     }
+
+    static async getAllLocations() {
+        const response = await fetch(`${BASE_URL}/boxLocation`);
+        const data = await response.json();
+        return data;
+    }
 }
 
 export default Api;

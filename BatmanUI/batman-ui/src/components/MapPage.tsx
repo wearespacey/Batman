@@ -3,8 +3,8 @@ import ReactMapGL, {GeolocateControl, NavigationControl, Marker, Popup} from 're
 import logo from '../assets/logo.svg';
 import Api from '../services/api';
 import BoxLocation from '../models/boxLocation';
-import { get } from 'https';
 import PopupDetailsPage from './PopupDetailsPage';
+import { Button, Checkbox } from '@material-ui/core';
 
 type MapState = {
   viewport: {
@@ -29,9 +29,14 @@ const Map: FunctionComponent<{initial?: MapState}> = ({
   const[viewport, setViewport] = useState(initial.viewport);
   const[boxes, setBoxes] = useState(initial.locations);
 
-  const getCurrentBoxes = async () => {
-    const locations = await Api.getCurrentLocations();
-    setBoxes(locations);
+  const getCurrentBoxes = async (getAll: boolean) => {
+    if(getAll) {
+      const locations = await Api.getAllLocations();
+      setBoxes(locations);
+    } else {
+      const locations = await Api.getCurrentLocations();
+      setBoxes(locations);
+    }
   };
 
   const onViewportChange = (viewport:any) => {
@@ -39,14 +44,16 @@ const Map: FunctionComponent<{initial?: MapState}> = ({
   } 
 
   return ( 
-    <ReactMapGL
+    <div>
+      <span>Display all boxes : <Checkbox onChange={(e, checked) => getCurrentBoxes(checked)}></Checkbox></span>
+      <ReactMapGL
       className="MapContainer"
       {...viewport}
       width='99%'
       height='80vh'
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       onViewportChange={viewport => onViewportChange(viewport)}
-      onLoad={getCurrentBoxes}>
+      onLoad={() => getCurrentBoxes(false)}>
       <GeolocateControl 
         positionOptions={{enableHighAccuracy: true}}
         trackUserLocation={true}
@@ -54,8 +61,9 @@ const Map: FunctionComponent<{initial?: MapState}> = ({
       <div style={{position: 'absolute', right: 0}}>
         <NavigationControl />
       </div>
-      {boxes.map(l => {return <BoxMarker key={String(l.boxId)} {...l}/>})}
+      {boxes.map(l => {return <BoxMarker key={String(l.id)} {...l}/>})}
     </ReactMapGL>
+    </div>
   );
 }
 
