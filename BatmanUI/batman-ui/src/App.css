@@ -20,6 +20,11 @@ body {
   min-width: 150px !important;
 }
 
+.filepond--wrapper {
+  width: 400px;
+}
+
+
 .boxLocationMarker {
   height: 3vmin;
 }
