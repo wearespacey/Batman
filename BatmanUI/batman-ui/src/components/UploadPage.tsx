@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { FilePond } from 'react-filepond';
 import Button from '@material-ui/core/Button';
 import azure from 'azure-storage';
-import axios from 'axios';
 
 class UploadComponent extends Component {
   pond: any;

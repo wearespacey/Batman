@@ -47,7 +47,7 @@ class Footer extends Component {
                   </DialogActions>
                 </Dialog>
             </div> 
-            Project - SpaceY - #hitw2019
+            Project - <a href="https://github.com/wearespacey">SpaceY</a> - #hitw2019
         </footer>
         
     }
