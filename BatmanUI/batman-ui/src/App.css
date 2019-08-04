@@ -81,25 +81,32 @@ body {
   color: black;
 }
 
+.HomePageLogo{
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Add a black background color to the top navigation */
 .topnav {
+  display: flex;
+  width: 100%;
   background-color: black;
   overflow: hidden;
+  justify-content: space-evenly;
 }
 
 /* Style the links inside the navigation bar */
 .topnav a {
-  float: left;
-  display: block;
   color: white;
-  text-align: center;
-  padding: 14px 16px;
+  padding: 14px;
   text-decoration: none;
   font-size: 17px;
 }
 
 /* Add an active class to highlight the current page */
 .topnav .nav-link a.active {
+  align-items: center;
   border-bottom: solid red 1px;
 }
 

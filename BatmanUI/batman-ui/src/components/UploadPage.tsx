@@ -22,7 +22,7 @@ class UploadComponent extends Component {
         />
         <Button
           variant="contained"
-          color="primary"
+          color= "primary"
           onClick={() => uploadDocument(this.state.files)}
         >
           Upload
