@@ -1,23 +1,3 @@
-![BatmanProjectLogo](https://github.com/wearespacey/Batman/blob/backend/BatmanProjectLogoBig.png)
-
-# Batman
-
-Opensource project coded during the Hack in the Woods 2019 edition. The aim of the project is to aid the Natagora organization and their various volunteers in better managing the equipment used to analyze bat population in Belgium. 
-
-## Authors
-
-* **Xavier Vercruysse** - *SpaceY member* - [xvercruysse](https://github.com/xvercruysse)
-* **Guillaume Servais** - *SpaceY member* - [Gservais](https://github.com/Gservais)
-* **Vivien Preser** - *SpaceY member* - [Vivibike](https://github.com/Vivibike)
-* **Chloé Michaux** - *SpaceY member* - [chloemich](https://github.com/chloemich)
-
-## Contributors
-
-* **Pierre** - *SpaceY contributor* - [Sexpistrolls](https://github.com/Sexpistrolls)
-* **Wilson** - *SpaceY contributor* - [wilson-weets](https://github.com/wilson-weets)
-* **Christophe** - *SpaceY contributor* - [G4mingEdition](https://github.com/G4mingEdition)
-
-
 <!-- 
 	Huge thank you to this repository for their amazing README template!
 	https://github.com/othneildrew/Best-README-Template/blob/master/README.md
