@@ -26,7 +26,6 @@
     <br />
     <br />
     <a href="https://github.com/wearespacey/batman/issues">Report Bug</a>
-    �
     <a href="https://github.com/wearespacey/batman/issues">Request Feature</a>
   </p>
 </p>
